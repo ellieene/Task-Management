@@ -1,4 +1,4 @@
-package org.example.management.configuration.mapper;
+package org.example.management.mapper;
 
 import lombok.RequiredArgsConstructor;
 import org.example.management.model.dto.TaskDto;
@@ -20,9 +20,14 @@ public class TaskToTaskDtoMapper {
     @PostConstruct
     public void setupMapper() {
         modalMapper.createTypeMap(Task.class, TaskDto.class)
-                .addMappings(m -> {
-                    m.map(task -> task.getAuthor().getEmail(), TaskDto::setAuthor);
-                    m.map(task -> task.getExecutor().getEmail(), TaskDto::setExecutor);
+                .addMappings(mapper -> {
+                    mapper.map(task -> task.getAuthor().getEmail(), TaskDto::setAuthor);
+
+                    // Безопасная маппинга executor'а
+                    mapper.using(ctx -> {
+                        Task task = (Task) ctx.getSource();
+                        return task.getExecutor() != null ? task.getExecutor().getEmail() : null;
+                    }).map(src -> src, (dto, value) -> dto.setExecutor((String) value));
                 });
     }
 }

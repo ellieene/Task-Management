@@ -3,6 +3,7 @@ package org.example.management.service;
 import io.jsonwebtoken.*;
 import lombok.AllArgsConstructor;
 import org.example.management.model.request.UserRequest;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
@@ -14,11 +15,20 @@ import java.util.Date;
 @AllArgsConstructor
 public class JwtService {
 
+    @Value("${jwt.secret}")
+    private String jwtSecret;
+
     private SecretKey secret;
 
     public JwtService() {
-        byte[] keyBytes = "2f73bb18fdf365a62cad45d8841f135dcbd6fbb1dcf5311b6240d96cde65f764" .getBytes(StandardCharsets.UTF_8);
-        this.secret = new SecretKeySpec(keyBytes, 0, keyBytes.length, "HmacSHA256"); // Укажите алгоритм
+        // Конструктор по умолчанию для инициализации
+    }
+
+    private void initializeSecret() {
+        if (secret == null && jwtSecret != null) {
+            byte[] keyBytes = jwtSecret.getBytes(StandardCharsets.UTF_8);
+            this.secret = new SecretKeySpec(keyBytes, 0, keyBytes.length, "HmacSHA256");
+        }
     }
 
     /**
@@ -29,6 +39,7 @@ public class JwtService {
      * @return
      */
     public String generateToken(String email, String password) {
+        initializeSecret();
         return Jwts.builder()
                 .setSubject(email)
                 .claim("email", email)
@@ -46,6 +57,7 @@ public class JwtService {
      * @return Возвращает {@link UserRequest}
      */
     public UserRequest getEmailAndPassword(String token) {
+        initializeSecret();
         Claims claims = Jwts.parser()
                 .setSigningKey(secret)
                 .parseClaimsJws(token)
@@ -67,6 +79,7 @@ public class JwtService {
      * @return
      */
     public String extractEmail(String token) {
+        initializeSecret();
         return Jwts.parser()
                 .setSigningKey(secret)
                 .parseClaimsJws(token)
@@ -82,6 +95,7 @@ public class JwtService {
      */
     public boolean isTokenValid(String token) {
         try {
+            initializeSecret();
             Jwts.parser()
                     .setSigningKey(secret)
                     .parseClaimsJws(token);

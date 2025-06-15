@@ -1,4 +1,4 @@
-package org.example.management.configuration.filter;
+package org.example.management.filter;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -17,7 +17,6 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 
-@RequiredArgsConstructor
 @Service
 public class JwtRequestFilter extends OncePerRequestFilter {
 
@@ -25,6 +24,11 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     private final JwtService jwtService;
     private final static String HEADER_NAME = "Authorization";
     private final static String HEADER_PREFIX = "Bearer ";
+
+    public JwtRequestFilter(CustomUserDetailsService customUserDetailsService, JwtService jwtService) {
+        this.customUserDetailsService = customUserDetailsService;
+        this.jwtService = jwtService;
+    }
 
     /**
      * Метод для парсинга токена авторизации при запросе

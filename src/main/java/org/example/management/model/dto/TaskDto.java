@@ -20,7 +20,7 @@ public class TaskDto {
     @Schema(description = "Описание")
     private String description;
 
-    @Schema(description = "Статут задачи")
+    @Schema(description = "Статус задачи")
     private TaskStatus status;
 
     @Schema(description = "Приоритет задачи")

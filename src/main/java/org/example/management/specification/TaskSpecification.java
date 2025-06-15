@@ -1,4 +1,4 @@
-package org.example.management.configuration.specification;
+package org.example.management.specification;
 
 import lombok.experimental.UtilityClass;
 import org.example.management.model.entity.Task;

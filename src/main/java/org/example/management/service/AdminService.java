@@ -1,6 +1,5 @@
 package org.example.management.service;
 
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.example.management.model.entity.User;
 import org.example.management.model.enums.Role;

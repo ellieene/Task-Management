@@ -1,7 +1,7 @@
 package org.example.management.configuration;
 
 import lombok.RequiredArgsConstructor;
-import org.example.management.configuration.filter.JwtRequestFilter;
+import org.example.management.filter.JwtRequestFilter;
 import org.example.management.service.CustomUserDetailsService;
 import org.example.management.service.JwtService;
 import org.springframework.context.annotation.Bean;

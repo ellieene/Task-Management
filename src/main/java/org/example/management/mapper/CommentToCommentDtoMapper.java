@@ -1,4 +1,4 @@
-package org.example.management.configuration.mapper;
+package org.example.management.mapper;
 
 import lombok.RequiredArgsConstructor;
 import org.example.management.model.dto.CommentDto;
@@ -20,6 +20,6 @@ public class CommentToCommentDtoMapper {
     @PostConstruct
     public void setupMapper() {
         modalMapper.createTypeMap(Comment.class, CommentDto.class)
-            .addMappings(m -> m.map(comment -> comment.getUser().getEmail(), CommentDto::setUser));
+            .addMappings(m -> m.map(comment -> comment.getUser().getEmail(), (commentDto, value) -> commentDto.setUser((String) value)));
     }
 }

@@ -1,7 +1,7 @@
 package org.example.management.service;
 
 import lombok.RequiredArgsConstructor;
-import org.example.management.configuration.specification.TaskSpecification;
+import org.example.management.specification.TaskSpecification;
 import org.example.management.exception.EntityNotFoundException;
 import org.example.management.exception.RoleAndRequestMissMatchException;
 import org.example.management.model.dto.TaskDto;
@@ -20,9 +20,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.awt.print.Pageable;
 import java.util.List;
-import java.util.Objects;
 import java.util.UUID;
 
 @Service
