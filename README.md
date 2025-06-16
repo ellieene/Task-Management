@@ -30,4 +30,8 @@ docker-compose up --build
 
 
 /v3/api-docs  - в поиске swagger<br>
-[Открыть Swagger UI](http://localhost:8080/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config)
+#### Для докера
+[Открыть Swagger UI](http://localhost:8081/swagger-ui/index.html)
+
+#### Локальный swagger
+[Открыть Swagger UI](http://localhost:8080/swagger-ui/index.html)

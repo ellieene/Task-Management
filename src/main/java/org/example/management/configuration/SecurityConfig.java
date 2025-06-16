@@ -52,7 +52,7 @@ public class SecurityConfig {
                         .antMatchers("/comment").authenticated()
                         .antMatchers("/task/find", "/task/*/status").authenticated()
                         .antMatchers("/task/**").hasAuthority("ROLE_ADMIN")
-                        .antMatchers("/v3/api-docs", "/swagger-ui.html", "/swagger-ui/**").permitAll()
+                        .antMatchers("/v3/api-docs", "/swagger-ui.html", "/swagger-ui/**", "/static/**").permitAll()
                         .antMatchers("/error").denyAll()
                         .anyRequest().authenticated()
                 )

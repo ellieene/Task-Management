@@ -23,7 +23,6 @@ public class TaskToTaskDtoMapper {
                 .addMappings(mapper -> {
                     mapper.map(task -> task.getAuthor().getEmail(), TaskDto::setAuthor);
 
-                    // Безопасная маппинга executor'а
                     mapper.using(ctx -> {
                         Task task = (Task) ctx.getSource();
                         return task.getExecutor() != null ? task.getExecutor().getEmail() : null;
