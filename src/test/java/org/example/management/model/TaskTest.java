@@ -15,7 +15,6 @@ class TaskTest {
 
     @Test
     void testTaskCreation() {
-        // Arrange
         UUID id = UUID.randomUUID();
         User author = new User();
         author.setEmail("author@example.com");
@@ -25,7 +24,6 @@ class TaskTest {
         
         LocalDate now = LocalDate.now();
 
-        // Act
         Task task = new Task();
         task.setId(id);
         task.setTitle("Test Task");
@@ -36,7 +34,6 @@ class TaskTest {
         task.setExecutor(executor);
         task.setCreatedAt(now);
 
-        // Assert
         assertNotNull(task);
         assertEquals(id, task.getId());
         assertEquals("Test Task", task.getTitle());
@@ -50,10 +47,8 @@ class TaskTest {
 
     @Test
     void testTaskDefaultValues() {
-        // Arrange & Act
         Task task = new Task();
 
-        // Assert
         assertNotNull(task);
         assertEquals(TaskStatus.PENDING, task.getStatus());
         assertNotNull(task.getCreatedAt());

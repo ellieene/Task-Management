@@ -12,7 +12,6 @@ class UserTest {
 
     @Test
     void testUserBuilder() {
-        // Arrange & Act
         UUID id = UUID.randomUUID();
         User user = User.builder()
                 .id(id)
@@ -21,7 +20,6 @@ class UserTest {
                 .role(Role.ROLE_USER)
                 .build();
 
-        // Assert
         assertNotNull(user);
         assertEquals(id, user.getId());
         assertEquals("test@example.com", user.getEmail());
@@ -31,13 +29,11 @@ class UserTest {
 
     @Test
     void testUserDetailsMethods() {
-        // Arrange
         User user = User.builder()
                 .email("test@example.com")
                 .role(Role.ROLE_ADMIN)
                 .build();
 
-        // Act & Assert
         assertEquals("test@example.com", user.getUsername());
         assertTrue(user.isEnabled());
         assertTrue(user.isAccountNonExpired());
@@ -49,7 +45,6 @@ class UserTest {
 
     @Test
     void testUserEquality() {
-        // Arrange
         UUID id = UUID.randomUUID();
         User user1 = User.builder()
                 .id(id)
@@ -65,7 +60,6 @@ class UserTest {
                 .role(Role.ROLE_USER)
                 .build();
 
-        // Act & Assert
         assertEquals(user1, user2);
         assertEquals(user1.hashCode(), user2.hashCode());
     }

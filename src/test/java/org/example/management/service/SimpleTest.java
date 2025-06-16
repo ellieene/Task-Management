@@ -12,7 +12,6 @@ class SimpleTest {
 
     @Test
     void testUserCreation() {
-        // Arrange & Act
         User user = User.builder()
                 .id(UUID.randomUUID())
                 .email("test@example.com")
@@ -20,7 +19,6 @@ class SimpleTest {
                 .role(Role.ROLE_USER)
                 .build();
 
-        // Assert
         assertNotNull(user);
         assertEquals("test@example.com", user.getEmail());
         assertEquals("password", user.getPassword());
@@ -33,23 +31,19 @@ class SimpleTest {
 
     @Test
     void testUserUsername() {
-        // Arrange
         User user = User.builder()
                 .email("test@example.com")
                 .build();
 
-        // Act & Assert
         assertEquals("test@example.com", user.getUsername());
     }
 
     @Test
     void testUserAuthorities() {
-        // Arrange
         User user = User.builder()
                 .role(Role.ROLE_ADMIN)
                 .build();
 
-        // Act & Assert
         assertNotNull(user.getAuthorities());
         assertEquals(1, user.getAuthorities().size());
         assertTrue(user.getAuthorities().stream()

@@ -11,7 +11,6 @@ class EnumTest {
 
     @Test
     void testRoleEnum() {
-        // Act & Assert
         assertEquals(Role.ROLE_USER, Role.valueOf("ROLE_USER"));
         assertEquals(Role.ROLE_ADMIN, Role.valueOf("ROLE_ADMIN"));
         assertEquals(2, Role.values().length);
@@ -19,7 +18,6 @@ class EnumTest {
 
     @Test
     void testTaskPriorityEnum() {
-        // Act & Assert
         assertEquals(TaskPriority.LOW, TaskPriority.valueOf("LOW"));
         assertEquals(TaskPriority.MEDIUM, TaskPriority.valueOf("MEDIUM"));
         assertEquals(TaskPriority.HIGH, TaskPriority.valueOf("HIGH"));
@@ -28,7 +26,6 @@ class EnumTest {
 
     @Test
     void testTaskStatusEnum() {
-        // Act & Assert
         assertEquals(TaskStatus.PENDING, TaskStatus.valueOf("PENDING"));
         assertEquals(TaskStatus.IN_PROGRESS, TaskStatus.valueOf("IN_PROGRESS"));
         assertEquals(TaskStatus.COMPLETED, TaskStatus.valueOf("COMPLETED"));

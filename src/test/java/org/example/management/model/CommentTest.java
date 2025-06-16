@@ -14,7 +14,6 @@ class CommentTest {
 
     @Test
     void testCommentCreation() {
-        // Arrange
         UUID id = UUID.randomUUID();
         User user = new User();
         user.setEmail("user@example.com");
@@ -24,7 +23,6 @@ class CommentTest {
         
         LocalDateTime now = LocalDateTime.now();
 
-        // Act
         Comment comment = Comment.builder()
                 .id(id)
                 .content("Test comment content")
@@ -33,7 +31,6 @@ class CommentTest {
                 .createdAt(now)
                 .build();
 
-        // Assert
         assertNotNull(comment);
         assertEquals(id, comment.getId());
         assertEquals("Test comment content", comment.getContent());
@@ -44,12 +41,10 @@ class CommentTest {
 
     @Test
     void testCommentDefaultValues() {
-        // Arrange & Act
         Comment comment = Comment.builder()
                 .content("Test comment")
                 .build();
 
-        // Assert
         assertNotNull(comment);
         assertEquals("Test comment", comment.getContent());
         assertNull(comment.getUser());
