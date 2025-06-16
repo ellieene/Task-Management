@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if ! command -v psql &> /dev/null; then
-    echo "❌ PostgreSQL не установлен. Установите PostgreSQL и попробуйте снова."
+    echo "❌ PostgreSQL не установлен."
     exit 1
 fi
 
@@ -10,7 +10,7 @@ if ! pg_isready -q; then
         brew services start postgresql@14
         sleep 3
     else
-        echo "❌ Не удалось запустить PostgreSQL. Запустите его вручную."
+        echo "❌ Не удалось запустить PostgreSQL."
         exit 1
     fi
 fi
@@ -33,6 +33,5 @@ psql postgres -c "GRANT ALL PRIVILEGES ON DATABASE $DB_NAME TO $DB_USER;"
 psql postgres -c "ALTER USER $DB_USER CREATEDB;"
 
 if ! psql -h localhost -U $DB_USER -d $DB_NAME -c "SELECT 1;" &> /dev/null; then
-    echo "⚠️  Не удалось подключиться к базе данных. Возможно, нужно настроить аутентификацию."
-    echo "💡 Добавьте в pg_hba.conf: local all task_user md5"
-fi 
+    echo "Не удалось подключиться к базе данных."
+fi
